@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const TrafficLight = () => {
+
+  //set up my hooks
   const [color, setColor] = useState("");
   const [additionSwitch, setAdditionSwitch] = useState(0);
   const [addColorBtn, setAddColorBtn] = useState("Add Color");
@@ -8,6 +10,7 @@ const TrafficLight = () => {
   console.log(color);
   console.log(additionSwitch);
 
+  // check if there is an additional color and switch the additional color state
   let colorAddition = () => {
     if (additionSwitch === 0) {
       setAdditionSwitch(1);
@@ -18,6 +21,7 @@ const TrafficLight = () => {
     }
   };
 
+  // check actual color and changes to the next color
   let actualColor = () => {
     if (color === "red") {
       setColor("yellow");
@@ -36,29 +40,35 @@ const TrafficLight = () => {
       setColor("red");
     }
   };
+
+  // returns the traffic light HTML, lights and buttons
   return (
     <div>
       <div id="trafficTop">
         <div className="container">
+
           <div className="row tfFrame d-flex flex-column justify-content-center">
             <div className={"red light" + (color === "red" ? " selectedRed" : "")} onClick={() => setColor("red")}>
             </div>
+
             <div className={"yellow light" + (color === "yellow" ? " selectedYellow" : "")} onClick={() => setColor("yellow")}
             >
             </div>
+
             <div className={"green light" + (color === "green" ? " selectedGreen" : "")} onClick={() => setColor("green")}
             ></div>
-            {additionSwitch === 0 ?
-              "" :
-              <div className={"purple light" + (color === "purple" ? " selectedPurple" : "")} onClick={() => setColor("purple")}></div>}
 
+            {additionSwitch === 0 ? "" : <div className={"purple light" + (color === "purple" ? " selectedPurple" : "")} onClick={() => setColor("purple")}></div>}
           </div>
+
           <div className="row col-12 d-flex justify-content-center">
             <button className="stateChangeBtn btn btn-primary" onClick={actualColor}>Change State</button>
           </div>
+
           <div className="row col-12 d-flex justify-content-center">
             <button className="stateChangeBtn btn btn-primary" onClick={colorAddition}>{addColorBtn}</button>
           </div>
+
         </div>
       </div >
     </div >

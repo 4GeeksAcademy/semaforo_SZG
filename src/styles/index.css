@@ -56,8 +56,7 @@ body {
 .tfFrame {
   margin-top: 50px;
   background: black;
-  width: 150px;
-  padding: 20px;
+  padding: 50px;
   border-radius: 10%;
 }
 
