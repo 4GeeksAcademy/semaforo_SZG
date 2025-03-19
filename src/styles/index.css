@@ -60,15 +60,15 @@ body {
   border-radius: 10%;
 }
 
-.selectedGreen {
+.selectedgreen {
   box-shadow: 0px 0px 25px 5px rgb(115, 255, 0);
 }
 
-.selectedRed {
+.selectedred {
   box-shadow: 0px 0px 25px 2px rgb(255, 0, 0);
 }
 
-.selectedYellow {
+.selectedyellow {
   box-shadow: 0px 0px 25px 2px rgb(251, 255, 0);
 }
 

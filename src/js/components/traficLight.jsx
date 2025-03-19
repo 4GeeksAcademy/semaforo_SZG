@@ -3,41 +3,41 @@ import React, { useState } from "react";
 const TrafficLight = () => {
 
   //set up my hooks
-  const [color, setColor] = useState("");
+  const [light, setLight] = useState("");
   const [additionSwitch, setAdditionSwitch] = useState(0);
-  const [addColorBtn, setAddColorBtn] = useState("Add Color");
-
-  console.log(color);
+  const [addLightBtn, setAddLightBtn] = useState("Add Light");
+  const [lightColors, setLightColors] = useState(["red", "yellow", "green"]);
+  console.log(light);
   console.log(additionSwitch);
 
   // check if there is an additional color and switch the additional color state
-  let colorAddition = () => {
+  let lightAddition = () => {
     if (additionSwitch === 0) {
       setAdditionSwitch(1);
-      setAddColorBtn("Remove Color");
+      setAddLightBtn("Remove Light");
     } else {
       setAdditionSwitch(0);
-      setAddColorBtn("Add Color");
+      setAddLightBtn("Add Light");
     }
   };
 
   // check actual color and changes to the next color
-  let actualColor = () => {
-    if (color === "red") {
-      setColor("yellow");
+  let actualLight = () => {
+    if (light === "red") {
+      setLight("yellow");
     }
-    if (color === "yellow") {
-      setColor("green");
+    if (light === "yellow") {
+      setLight("green");
     }
-    if (color === "green") {
+    if (light === "green") {
       if (additionSwitch === 1) {
-        setColor("purple");
+        setLight("purple");
       } else {
-        setColor("red");
+        setLight("red");
       }
     }
-    if (color === "purple" || color === "") {
-      setColor("red");
+    if (light === "purple" || light === "") {
+      setLight("red");
     }
   };
 
@@ -48,25 +48,23 @@ const TrafficLight = () => {
         <div className="container">
 
           <div className="row tfFrame d-flex flex-column justify-content-center">
-            <div className={"red light" + (color === "red" ? " selectedRed" : "")} onClick={() => setColor("red")}>
-            </div>
+            {lightColors.map((color, index) =>
+              <div key={index}
+                onClick={() => setLight(color)}
+                className={color + " light" + (light === color
+                  ? " selected" + light
+                  : "")}>
+              </div>)}
 
-            <div className={"yellow light" + (color === "yellow" ? " selectedYellow" : "")} onClick={() => setColor("yellow")}
-            >
-            </div>
-
-            <div className={"green light" + (color === "green" ? " selectedGreen" : "")} onClick={() => setColor("green")}
-            ></div>
-
-            {additionSwitch === 0 ? "" : <div className={"purple light" + (color === "purple" ? " selectedPurple" : "")} onClick={() => setColor("purple")}></div>}
+            {additionSwitch === 0 ? "" : <div className={"purple light" + (light === "purple" ? " selectedPurple" : "")} onClick={() => setLight("purple")}></div>}
           </div>
 
           <div className="row col-12 d-flex justify-content-center">
-            <button className="stateChangeBtn btn btn-primary" onClick={actualColor}>Change State</button>
+            <button className="stateChangeBtn btn btn-primary" onClick={actualLight}>Change State</button>
           </div>
 
           <div className="row col-12 d-flex justify-content-center">
-            <button className="stateChangeBtn btn btn-primary" onClick={colorAddition}>{addColorBtn}</button>
+            <button className="stateChangeBtn btn btn-primary" onClick={lightAddition}>{addLightBtn}</button>
           </div>
 
         </div>
